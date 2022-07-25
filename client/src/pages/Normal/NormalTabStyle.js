@@ -7,7 +7,7 @@ const insertTabStyle = (theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    margin: '10px 0px',
+    margin: '15px 0px',
   },
   formControl: {
     minWidth: 120,
@@ -33,12 +33,26 @@ const insertTabStyle = (theme) => ({
   fieldTitle: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'left',
-    width: '90px',
+    justifyContent: 'right',
+    width: '110px',
     height: '100%',
     fontSize: '18px',
+    paddingRight: '5px',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
+      width: '75px',
+    },
+  },
+  fieldText: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'left',
+    height: '100%',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    paddingLeft: '20px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '12px',
       width: '75px',
     },
   },
@@ -72,6 +86,7 @@ const insertTabStyle = (theme) => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
     },
+    margin: '10px 0',
   },
 });
 

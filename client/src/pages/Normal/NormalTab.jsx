@@ -7,21 +7,14 @@ import { CloudUpload } from '@material-ui/icons';
 import { Api, AxiosConfig } from 'GlobalDefine';
 import { useDispatch, useSelector } from 'react-redux';
 import { openSuccessInsertSnackbar, openErrorSnackbar } from 'redux/actions';
-import DateField from '../../components/Ticket/DateField';
-import BrandField from 'components/Dropdown/BrandField';
 
-import TicketNoField from '../../components/Ticket/TicketNoField';
-// import ClientField from 'components/Dropdown/ClientField';
+import moment from 'moment';
+
+import LocationField from 'components/Dropdown/LocationField';
+import ShiftField from 'components/Dropdown/ShiftField';
+import TechnicianField from 'components/Ticket/TechnicianField';
 import RemarksField from 'components/Dropdown/RemarksField';
 import styles from './NormalTabStyle';
-
-Date.prototype.yyyymmdd = function () {
-  var mm = this.getMonth() + 1;
-  var dd = this.getDate();
-  return [this.getFullYear(), '-', (mm > 9 ? '' : '0') + mm, '-', (dd > 9 ? '' : '0') + dd].join(
-    '',
-  );
-};
 
 const useStyles = makeStyles(styles);
 
@@ -30,7 +23,7 @@ const NormalTab = () => {
   const dispatch = useDispatch();
   const userStatus = useSelector((state) => state.user);
   const [tire, setTire] = useState({
-    date: new Date().yyyymmdd(),
+    date: moment().format('YYYY-MM-DD'),
     width: '',
     height: '',
     size: '',
@@ -148,20 +141,30 @@ const NormalTab = () => {
     <>
       <div className={classes.content}>
         <div className={classes.main}>
-          <div className={classes.title}>{'工單資料'}</div>
+          <div className={classes.title}>{'基本資料'}</div>
           <div className={classes.column}>
-            <div className={classes.fieldTitle}>{'工單單號:'}</div>
-            <TicketNoField value={tire.number} onChange={(number) => updateTire({ number })} />
+            <div className={classes.fieldTitle}>{'工單單號：'}</div>
+            <div className={classes.fieldText}>{'B202-20220725'}</div>
           </div>
           <div className={classes.column}>
-            <div className={classes.fieldTitle}>{'日期:'}</div>
-            <DateField value={tire.date} onChange={(date) => updateTire({ date })} />
+            <div className={classes.fieldTitle}>{'日期：'}</div>
+            <div className={classes.fieldText}>{tire.date}</div>
           </div>
           <div className={classes.column}>
-            <div className={classes.fieldTitle} style={{ paddingBottom: 20 }}>
-              {'品牌:'}
-            </div>
-            <BrandField value={tire.brand} onChange={(brand) => updateTire({ brand })} />
+            <div className={classes.fieldTitle}>{'結帳技師：'}</div>
+            <div className={classes.fieldText}>{userStatus.info.name}</div>
+          </div>
+          <div className={classes.column}>
+            <div className={classes.fieldTitle}>{'維修技師：'}</div>
+            <TechnicianField value={tire.remarks} onChange={(remarks) => updateTire({ remarks })} />
+          </div>
+          <div className={classes.column}>
+            <div className={classes.fieldTitle}>{'服務地點：'}</div>
+            <LocationField value={tire.remarks} onChange={(remarks) => updateTire({ remarks })} />
+          </div>
+          <div className={classes.column}>
+            <div className={classes.fieldTitle}>{'班別：'}</div>
+            <ShiftField value={tire.remarks} onChange={(remarks) => updateTire({ remarks })} />
           </div>
           <div className={classes.column}>
             <div className={classes.fieldTitle} style={{ paddingBottom: 20 }}>

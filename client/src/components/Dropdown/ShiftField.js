@@ -10,16 +10,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LocationField({ value, onChange }) {
+function ShiftField({ value, onChange }) {
   const classes = useStyles();
-  const locations = ['總廠', '新店', '板橋', '台中', '土城', '泰山'];
+  const locations = ['早班', '晚班'];
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <Select
         id="search-location"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        label={'地點'}
+        label={'班別'}
       >
         {locations.map((location) => (
           <MenuItem key={location} value={location}>
@@ -27,14 +27,14 @@ function LocationField({ value, onChange }) {
           </MenuItem>
         ))}
       </Select>
-      <InputLabel>{'地點'}</InputLabel>
+      <InputLabel>{'班別'}</InputLabel>
     </FormControl>
   );
 }
 
-LocationField.propTypes = {
+ShiftField.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export default LocationField;
+export default ShiftField;
