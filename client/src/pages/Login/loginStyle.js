@@ -8,6 +8,7 @@ const loginStyle = (theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: '20px 20px',
     },
+    backgroundColor: '#666666',
   },
   paper: {
     padding: '20px',

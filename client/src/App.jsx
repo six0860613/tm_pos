@@ -15,7 +15,7 @@ import Normal from 'pages/Normal';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import Snackbar from 'components/Snackbar';
 import './styles/main.scss';
@@ -57,7 +57,6 @@ function App() {
               {!userStatus.isLogin && <Redirect to="/login" component={Login} />}
             </Switch>
           )}
-          <Footer />
           <Snackbar />
         </PerfectScrollbar>
       </div>

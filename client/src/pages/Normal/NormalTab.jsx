@@ -13,7 +13,6 @@ import moment from 'moment';
 import LocationField from 'components/Dropdown/LocationField';
 import ShiftField from 'components/Dropdown/ShiftField';
 import TechnicianField from 'components/Ticket/TechnicianField';
-import RemarksField from 'components/Dropdown/RemarksField';
 import styles from './NormalTabStyle';
 
 const useStyles = makeStyles(styles);
@@ -165,12 +164,6 @@ const NormalTab = () => {
           <div className={classes.column}>
             <div className={classes.fieldTitle}>{'班別：'}</div>
             <ShiftField value={tire.remarks} onChange={(remarks) => updateTire({ remarks })} />
-          </div>
-          <div className={classes.column}>
-            <div className={classes.fieldTitle} style={{ paddingBottom: 20 }}>
-              {'備註:'}
-            </div>
-            <RemarksField value={tire.remarks} onChange={(remarks) => updateTire({ remarks })} />
           </div>
         </div>
         {!isEmpty(errorMsg) && <div className={classes.errorText}>{errorMsg}</div>}

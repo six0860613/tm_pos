@@ -24,10 +24,10 @@ const insertTabStyle = (theme) => ({
     alignItems: 'center',
     flexDirection: 'row',
     height: 'auto',
-    padding: '5px 0px 0px',
+    padding: '10px 0px 0px',
     [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      padding: '5px 0px 0px 10px',
+      width: '80%',
+      padding: '10px 0px 0px 10px',
     },
   },
   fieldTitle: {
@@ -40,7 +40,7 @@ const insertTabStyle = (theme) => ({
     paddingRight: '5px',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
-      width: '75px',
+      width: '100px',
     },
   },
   fieldText: {
@@ -52,8 +52,7 @@ const insertTabStyle = (theme) => ({
     fontWeight: 'bold',
     paddingLeft: '20px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '12px',
-      width: '75px',
+      fontSize: '16px',
     },
   },
   center: {
@@ -78,15 +77,15 @@ const insertTabStyle = (theme) => ({
     color: 'red',
   },
   title: {
-    padding: '10px 0px 0px 0px',
     fontSize: '24px',
     textAlign: 'left',
     width: '80%',
     borderBottom: '1px solid gray',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '18px',
-    },
     margin: '10px 0',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '20px',
+      margin: '5px 0',
+    },
   },
 });
 
