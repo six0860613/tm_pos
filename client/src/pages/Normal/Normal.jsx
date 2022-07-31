@@ -6,6 +6,7 @@ import NormalTab from './NormalTab';
 import ClientTab from './ClientTab';
 import { isEmpty } from 'lodash';
 import SwipeableViews from 'react-swipeable-views';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +59,17 @@ const Normal = () => {
   const classes = useStyles();
   const theme = useTheme();
   const userStatus = useSelector((state) => state.user);
-  if (isEmpty(userStatus)) {
-    return null;
-  }
+
+  const [ticketData, setTicketData] = useState({
+    basicInfo: {
+      ticketNo: '',
+      date: '',
+      checkoutTech: '',
+      repairTech: '',
+      location: '',
+      shift: '',
+    },
+  });
   const [tabIndex, setTabIndex] = useState(1);
 
   const handleChange = (event, newTabIndex) => {
@@ -75,11 +84,26 @@ const Normal = () => {
       'aria-controls': `tabpanel-${index}`,
     };
   };
+  const initTicket = () => {
+    setTicketData({
+      basicInfo: {
+        ticketNo: '',
+        date: moment().format('YYYY-MM-DD'),
+        checkoutTech: '',
+        repairTech: '',
+        location: '',
+        shift: '',
+      },
+    });
+  };
 
   useEffect(() => {
     setTabIndex(0);
   }, []);
 
+  if (isEmpty(userStatus)) {
+    return null;
+  }
   return (
     <div className={classes.root}>
       <Grid item xs={12} md={7} style={{ padding: 0, margin: '12px' }}>
@@ -116,7 +140,7 @@ const Normal = () => {
       <Grid item xs={12} md={4} style={{ padding: 0, margin: '12px' }}>
         <Paper className={classes.paper}>
           <div className={classes.title}>{'一般工單'}</div>
-          <NormalTab />
+          <NormalTab ticketData={ticketData} setTicketData={setTicketData} />
         </Paper>
       </Grid>
       {console.log('user:', userStatus)}
