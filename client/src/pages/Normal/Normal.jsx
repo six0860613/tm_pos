@@ -99,6 +99,7 @@ const Normal = () => {
 
   useEffect(() => {
     setTabIndex(0);
+    initTicket();
   }, []);
 
   if (isEmpty(userStatus)) {
