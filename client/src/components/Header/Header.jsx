@@ -18,7 +18,7 @@ const sections = [
   { key: 'record', title: '編輯紀錄', url: '/record', itemIcon: <Edit /> },
   { key: 'transfer', title: '調胎系統', url: '/transfer', itemIcon: <LocalShipping /> },
   { key: 'statistics', title: '統計報表', url: '/statistics', itemIcon: <Assessment /> },
-  { key: 'normal', title: '一般工單', url: '/normal', itemIcon: <Assignment /> },
+  { key: 'commonTicket', title: '一般工單', url: '/commonTicket', itemIcon: <Assignment /> },
 ];
 
 const Header = () => {

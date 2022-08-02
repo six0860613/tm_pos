@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Paper, Grid, Backdrop, AppBar, Tab, Tabs, Card } from '@material-ui/core';
-import NormalTab from './NormalTab';
+import BasicTab from './BasicTab';
 import ClientTab from './ClientTab';
 import { isEmpty } from 'lodash';
 import SwipeableViews from 'react-swipeable-views';
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Normal = () => {
+const CommonTicket = () => {
   const classes = useStyles();
   const theme = useTheme();
   const userStatus = useSelector((state) => state.user);
@@ -64,10 +64,12 @@ const Normal = () => {
     basicInfo: {
       ticketNo: '',
       date: '',
-      checkoutTech: '',
-      repairTech: '',
+      checkoutTechID: '',
+      checkoutTechName: '',
+      repairTechID: '',
+      repairTechName: '',
       location: '',
-      shift: '',
+      shifts: '',
     },
   });
   const [tabIndex, setTabIndex] = useState(1);
@@ -87,12 +89,16 @@ const Normal = () => {
   const initTicket = () => {
     setTicketData({
       basicInfo: {
-        ticketNo: '',
+        ticketNo: `${userStatus.info.account}-${moment().format('YYMMDDhhmm')}${
+          Math.floor(Math.random() * 889) + 111
+        }`,
         date: moment().format('YYYY-MM-DD'),
-        checkoutTech: '',
-        repairTech: '',
+        checkoutTechID: userStatus.info.account,
+        checkoutTechName: userStatus.info.name,
+        repairTechID: '',
+        repairTechName: '',
         location: '',
-        shift: '',
+        shifts: '',
       },
     });
   };
@@ -110,7 +116,11 @@ const Normal = () => {
       <Grid item xs={12} md={7} style={{ padding: 0, margin: '12px' }}>
         <Paper className={classes.paper}>
           <div className={classes.title}>{'一般工單'}</div>
-          <NormalTab />
+          <BasicTab
+            ticketData={ticketData}
+            basicInfo={ticketData.basicInfo}
+            setTicketData={setTicketData}
+          />
           <AppBar position="static" color="default">
             <Tabs
               value={tabIndex}
@@ -132,8 +142,8 @@ const Normal = () => {
               onChangeIndex={handleChangeIndex}
             >
               <ClientTab tabIndex={tabIndex} index={0} dir={theme.direction} />
-              <NormalTab tabIndex={tabIndex} index={1} dir={theme.direction} />
-              <NormalTab tabIndex={tabIndex} index={2} dir={theme.direction} />
+              <BasicTab tabIndex={tabIndex} index={1} dir={theme.direction} />
+              <BasicTab tabIndex={tabIndex} index={2} dir={theme.direction} />
             </SwipeableViews>
           </Card>
         </Paper>
@@ -141,10 +151,9 @@ const Normal = () => {
       <Grid item xs={12} md={4} style={{ padding: 0, margin: '12px' }}>
         <Paper className={classes.paper}>
           <div className={classes.title}>{'一般工單'}</div>
-          <NormalTab ticketData={ticketData} setTicketData={setTicketData} />
+          <BasicTab ticketData={ticketData} setTicketData={setTicketData} />
         </Paper>
       </Grid>
-      {console.log('user:', userStatus)}
       {userStatus.info.authority === 3 && (
         <Backdrop className={classes.backdrop} open={true}>
           <div className={classes.backdropText}>{'權限不足'}</div>
@@ -154,4 +163,4 @@ const Normal = () => {
   );
 };
 
-export default Normal;
+export default CommonTicket;

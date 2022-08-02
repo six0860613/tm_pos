@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LocationField({ value, onChange }) {
+function LocationField({ val, valChange }) {
   const classes = useStyles();
   const locations = ['總廠', '新店', '板橋', '台中', '土城', '泰山', '桃園'];
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <Select
         id="search-location"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={val}
+        onChange={(e) => valChange(e.target.value)}
         label={'地點'}
       >
         {locations.map((location) => (
@@ -33,8 +33,8 @@ function LocationField({ value, onChange }) {
 }
 
 LocationField.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  val: PropTypes.string,
+  valChange: PropTypes.func.isRequired,
 };
 
 export default LocationField;

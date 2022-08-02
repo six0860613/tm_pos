@@ -13,7 +13,7 @@ import BrandField from 'components/Dropdown/BrandField';
 import TicketNoField from '../../components/Ticket/TicketNoField';
 // import ClientField from 'components/Dropdown/ClientField';
 import RemarksField from 'components/Dropdown/RemarksField';
-import styles from './NormalTabStyle';
+import styles from './BasicTabStyle';
 
 Date.prototype.yyyymmdd = function () {
   var mm = this.getMonth() + 1;

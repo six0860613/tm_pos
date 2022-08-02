@@ -10,25 +10,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TechnicianField = ({ value, onChange }) => {
+const TechnicianField = ({ val, valChange }) => {
   const classes = useStyles();
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <TextField
         id="tire-remarks"
         label={'技師'}
-        value={value}
+        value={val}
         fullWidth
         variant="outlined"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => valChange(e.target.value)}
       />
     </FormControl>
   );
 };
 
 TechnicianField.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  val: PropTypes.string,
+  valChange: PropTypes.func.isRequired,
 };
 
 export default TechnicianField;

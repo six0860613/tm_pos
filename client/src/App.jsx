@@ -11,7 +11,7 @@ import Insert from 'pages/Insert';
 import Record from 'pages/Record';
 import Transfer from 'pages/Transfer';
 import Statistics from 'pages/Statistics';
-import Normal from 'pages/Normal';
+import CommonTicket from 'pages/CommonTicket';
 import Login from 'pages/Login';
 import Home from 'pages/Home';
 import Header from 'components/Header';
@@ -50,7 +50,7 @@ function App() {
               {userStatus.isLogin && <Record exact path="/record" />}
               {userStatus.isLogin && <Transfer exact path="/transfer" />}
               {userStatus.isLogin && <Statistics exact path="/statistics" />}
-              {userStatus.isLogin && <Normal exact path="/normal" />}
+              {userStatus.isLogin && <CommonTicket exact path="/commonTicket" />}
               {userStatus.isLogin && <Home exact path="/" />}
               {userStatus.isLogin && <Redirect to="/" />}
               {!userStatus.isLogin && <Login path="/login" />}
