@@ -80,12 +80,16 @@ const CommonTicket = () => {
   const handleChangeIndex = (index) => {
     setTabIndex(index);
   };
+
+  // tab切換function
   const a11yProps = (index) => {
     return {
       id: `tab-${index}`,
       'aria-controls': `tabpanel-${index}`,
     };
   };
+
+  // 初始化資料
   const initTicket = () => {
     setTicketData({
       basicInfo: {
@@ -113,6 +117,7 @@ const CommonTicket = () => {
   }
   return (
     <div className={classes.root}>
+      {console.log('ticket:', ticketData)}
       <Grid item xs={12} md={7} style={{ padding: 0, margin: '12px' }}>
         <Paper className={classes.paper}>
           <div className={classes.title}>{'一般工單'}</div>

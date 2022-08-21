@@ -1,6 +1,6 @@
-// const ApiUrl = 'https://localhost:4000/';
+const ApiUrl = 'https://localhost:4000/';
 //const ApiUrl = 'http://104.155.205.215:4000/';
-const ApiUrl = 'https://api.tiremaster-24h-services.com/';
+// const ApiUrl = 'https://api.tiremaster-24h-services.com/';
 const Api = {
   Tires: {
     SearchTires: `${ApiUrl}db/searchTires`,
@@ -17,6 +17,9 @@ const Api = {
     GetRecords: `${ApiUrl}db/getRecords`,
     GetGraphByWidth: `${ApiUrl}db/getGraphByWidth`,
     GetStatistics: `${ApiUrl}db/getStatistics`,
+  },
+  Ticket: {
+    GetUserInfo: `${ApiUrl}db/getUserInfo`,
   },
   User: {
     Check: `${ApiUrl}user/check/`,

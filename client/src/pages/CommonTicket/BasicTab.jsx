@@ -1,7 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { CircularProgress } from '@material-ui/core';
+import axios from 'axios';
+import { Api, AxiosConfig } from 'GlobalDefine';
+
+import { useDispatch } from 'react-redux';
+import { openErrorSnackbar } from 'redux/actions';
 
 import LocationField from 'components/Dropdown/LocationField';
 import ShiftField from 'components/Dropdown/ShiftField';
@@ -13,6 +18,9 @@ const useStyles = makeStyles(styles);
 const BasicTab = (props) => {
   const classes = useStyles();
   const { ticketData, basicInfo, setTicketData } = props;
+  const dispatch = useDispatch();
+
+  const [techID, setTechID] = useState('');
 
   const updateBasicInfo = useCallback(
     (v) => {
@@ -23,9 +31,32 @@ const BasicTab = (props) => {
     [basicInfo],
   );
 
+  const getUserName = async (id) => {
+    try {
+      const result = await axios.get(`${Api.Ticket.GetUserInfo}/${id}`, AxiosConfig.General);
+      if (result.status === 200) {
+        if (result.data !== 'Not Found.' && result.data.email === basicInfo.repairTechID) {
+          updateBasicInfo({ repairTechName: result.data.name });
+          if (result.data.position !== '技師') {
+            dispatch(openErrorSnackbar('提醒：此編號非技師帳號'));
+          }
+        }
+        if (result.data === 'Not Found.') updateBasicInfo({ repairTechName: '查無此技師' });
+      } else {
+        dispatch(openErrorSnackbar('錯誤：請聯繫維護人員！'));
+      }
+    } catch (error) {
+      dispatch(openErrorSnackbar('錯誤：請聯繫維護人員！'));
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    // createId();
-  }, []);
+    // 查詢技師資料
+    if (techID) {
+      getUserName(techID.toString());
+    }
+  }, [techID]);
 
   return (
     <>
@@ -51,8 +82,12 @@ const BasicTab = (props) => {
               <div className={classes.fieldTitle}>{'維修技師：'}</div>
               <TechnicianField
                 val={basicInfo.repairTechID}
-                valChange={(repairTechID) => updateBasicInfo({ repairTechID })}
+                valChange={(repairTechID) => {
+                  updateBasicInfo({ repairTechID });
+                  setTechID(repairTechID);
+                }}
               />
+              <div className={classes.fieldText}>{basicInfo.repairTechName}</div>
             </div>
             <div className={classes.column}>
               <div className={classes.fieldTitle}>{'服務地點：'}</div>
