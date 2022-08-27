@@ -71,6 +71,7 @@ const CommonTicket = () => {
       location: '',
       shifts: '',
     },
+    clientInfo: {},
   });
   const [tabIndex, setTabIndex] = useState(1);
 
@@ -103,6 +104,14 @@ const CommonTicket = () => {
         repairTechName: '',
         location: '',
         shifts: '',
+      },
+      clientInfo: {
+        licenseNo: '',
+        clientName: '',
+        clientPhone: '',
+        carBrand: '',
+        carType: '',
+        mileage: '',
       },
     });
   };
@@ -146,7 +155,14 @@ const CommonTicket = () => {
               index={tabIndex}
               onChangeIndex={handleChangeIndex}
             >
-              <ClientTab tabIndex={tabIndex} index={0} dir={theme.direction} />
+              <ClientTab
+                tabIndex={tabIndex}
+                index={0}
+                dir={theme.direction}
+                ticketData={ticketData}
+                clientInfo={ticketData.clientInfo}
+                setTicketData={setTicketData}
+              />
               <BasicTab tabIndex={tabIndex} index={1} dir={theme.direction} />
               <BasicTab tabIndex={tabIndex} index={2} dir={theme.direction} />
             </SwipeableViews>

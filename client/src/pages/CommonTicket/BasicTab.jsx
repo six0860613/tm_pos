@@ -11,7 +11,7 @@ import { openErrorSnackbar } from 'redux/actions';
 import LocationField from 'components/Dropdown/LocationField';
 import ShiftField from 'components/Dropdown/ShiftField';
 import TechnicianField from 'components/Ticket/TechnicianField';
-import styles from './BasicTabStyle';
+import styles from './TabStyle';
 
 const useStyles = makeStyles(styles);
 

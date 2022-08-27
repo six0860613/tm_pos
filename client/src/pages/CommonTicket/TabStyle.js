@@ -1,4 +1,4 @@
-const insertTabStyle = (theme) => ({
+const TabStyle = (theme) => ({
   content: {
     width: '100%',
   },
@@ -89,4 +89,4 @@ const insertTabStyle = (theme) => ({
   },
 });
 
-export default insertTabStyle;
+export default TabStyle;
