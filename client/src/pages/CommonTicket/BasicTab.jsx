@@ -12,6 +12,7 @@ import LocationField from 'components/Dropdown/LocationField';
 import ShiftField from 'components/Dropdown/ShiftField';
 import TechnicianField from 'components/Ticket/TechnicianField';
 import styles from './TabStyle';
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles(styles);
 
@@ -25,10 +26,14 @@ const BasicTab = (props) => {
   const updateBasicInfo = useCallback(
     (v) => {
       let newData = { ...ticketData };
+      // 切換地點時產生單號
+      if (Object.keys(v)[0] == 'location') {
+        newData.basicInfo.ticketNo = createTicketNo(v.location);
+      }
       newData.basicInfo = { ...basicInfo, ...v };
       setTicketData(newData);
     },
-    [basicInfo],
+    [ticketData],
   );
 
   const getUserName = async (id) => {
@@ -51,6 +56,38 @@ const BasicTab = (props) => {
     }
   };
 
+  const transLocation = (location) => {
+    let transfer = '';
+    switch (location) {
+      case '總廠':
+        transfer = 'PF';
+        break;
+      case '新店':
+        transfer = 'XD';
+        break;
+      case '板橋':
+        transfer = 'BQ';
+        break;
+      case '台中':
+        transfer = 'TC';
+        break;
+      case '泰山':
+        transfer = 'TS';
+        break;
+      case '桃園':
+        transfer = 'TY';
+        break;
+      default:
+        break;
+    }
+    return transfer;
+  };
+
+  const createTicketNo = (location) => {
+    let en = transLocation(location);
+    return en ? en + dayjs().format('YYYYMMDD') : '單號格式有誤';
+  };
+
   useEffect(() => {
     // 查詢技師資料
     if (techID) {
@@ -62,6 +99,7 @@ const BasicTab = (props) => {
     <>
       {ticketData && basicInfo ? (
         <div className={classes.content}>
+          {console.log('render basicTab:', ticketData)}
           <div className={classes.main}>
             <div className={classes.title}>{'基本資料'}</div>
             <div className={classes.column}>

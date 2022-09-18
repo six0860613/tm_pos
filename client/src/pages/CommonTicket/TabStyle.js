@@ -30,6 +30,12 @@ const TabStyle = (theme) => ({
       padding: '10px 0px 0px 10px',
     },
   },
+  selectBtnGroup: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
   fieldTitle: {
     display: 'flex',
     alignItems: 'center',

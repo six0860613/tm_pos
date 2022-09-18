@@ -6,7 +6,7 @@ import BasicTab from './BasicTab';
 import ClientTab from './ClientTab';
 import { isEmpty } from 'lodash';
 import SwipeableViews from 'react-swipeable-views';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,10 +94,8 @@ const CommonTicket = () => {
   const initTicket = () => {
     setTicketData({
       basicInfo: {
-        ticketNo: `${userStatus.info.account}-${moment().format('YYMMDDhhmm')}${
-          Math.floor(Math.random() * 889) + 111
-        }`,
-        date: moment().format('YYYY-MM-DD'),
+        ticketNo: '',
+        date: dayjs().format('YYYY-MM-DD'),
         checkoutTechID: userStatus.info.account,
         checkoutTechName: userStatus.info.name,
         repairTechID: '',
@@ -126,7 +124,6 @@ const CommonTicket = () => {
   }
   return (
     <div className={classes.root}>
-      {console.log('ticket:', ticketData)}
       <Grid item xs={12} md={7} style={{ padding: 0, margin: '12px' }}>
         <Paper className={classes.paper}>
           <div className={classes.title}>{'一般工單'}</div>
@@ -156,7 +153,6 @@ const CommonTicket = () => {
               onChangeIndex={handleChangeIndex}
             >
               <ClientTab
-                tabIndex={tabIndex}
                 index={0}
                 dir={theme.direction}
                 ticketData={ticketData}

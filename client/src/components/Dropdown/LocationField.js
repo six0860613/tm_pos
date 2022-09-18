@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LocationField({ val, valChange }) {
   const classes = useStyles();
-  const locations = ['總廠', '新店', '板橋', '台中', '土城', '泰山', '桃園'];
+  const locations = ['總廠', '新店', '板橋', '台中', '泰山', '桃園'];
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <Select
